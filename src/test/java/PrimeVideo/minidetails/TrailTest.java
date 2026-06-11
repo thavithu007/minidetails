@@ -43,7 +43,7 @@ public class TrailTest extends TestData {
 		map2.put("email", "thavithu15@gmail.com");
 		map2.put("password", "10011998Ad");
 		map2.put("productName", "ADIDAS ORIGINAL");
-		return new Object[][] { { map1 } };
+		return new Object[][] { { map1 },{map2 }};
 
 	}
 
