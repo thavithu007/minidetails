@@ -70,7 +70,7 @@ public class TestData {
 	public String getScreenshot(String testCaseName,WebDriver driver) throws IOException {
 		TakesScreenshot ts=(TakesScreenshot)driver;
 		File source=ts.getScreenshotAs(OutputType.FILE);
-		String path="C:\\Users\\Vijayalakshmi\\democicd\\minidetails\\Screenshots"+testCaseName+".png";
+		String path="C:\\Users\\Vijayalakshmi\\democicd\\minidetails\\Screenshots\\"+testCaseName+".png";
 		File ss=new File(path);
 		FileUtils.copyFile(source, ss);
 		return path;
