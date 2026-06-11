@@ -50,7 +50,7 @@ public class TrailTest extends TestData {
 	@DataProvider
 	public Object[][] getData2() throws IOException{
 		List<HashMap<String,String>> data=getJsonToMap("C:\\Users\\Vijayalakshmi\\democicd\\minidetails\\src\\test\\java\\PrimeVideo\\minidetails\\JsonDataProvider\\data.json");
-		return new Object[][] {{data.get(0)}};
+		return new Object[][] {{data.get(0)},{data.get(1)},{data.get(2)}};
 	}
 
 }

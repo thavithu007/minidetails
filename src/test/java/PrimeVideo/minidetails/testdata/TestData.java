@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -63,6 +65,16 @@ public class TestData {
 	@AfterMethod(alwaysRun = true)
 	public void tearDown() {
 		driver.close();
+	}
+	
+	public String getScreenshot(String testCaseName,WebDriver driver) throws IOException {
+		TakesScreenshot ts=(TakesScreenshot)driver;
+		File source=ts.getScreenshotAs(OutputType.FILE);
+		String path="C:\\Users\\Vijayalakshmi\\democicd\\minidetails\\Screenshots"+testCaseName+".png";
+		File ss=new File(path);
+		FileUtils.copyFile(source, ss);
+		return path;
+		
 	}
 
 }

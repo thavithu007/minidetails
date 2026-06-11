@@ -1,5 +1,8 @@
 package PrimeVideo.minidetails.testdata;
 
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -10,7 +13,7 @@ import com.aventstack.extentreports.Status;
 
 import PrimeVideo.minidetails.GlobalProperties.ExtentReporterMD;
 
-public class Listeners implements ITestListener {
+public class Listeners extends TestData implements ITestListener {
 	ExtentReports report=ExtentReporterMD.getExtentReport();
 	ThreadLocal<ExtentTest>  extentTest=new ThreadLocal();
 	ExtentTest test;
@@ -33,7 +36,21 @@ public class Listeners implements ITestListener {
 			}
 		
 			@Override 	public void onTestFailure(ITestResult result) { 
-				extentTest.get().log(Status.FAIL, "Test Case is Failed");
+				extentTest.get().fail(result.getThrowable());
+				
+					try {
+						driver=(WebDriver)result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
+					} catch (Exception ecp) {
+						ecp.printStackTrace();
+					}try {
+					String path=getScreenshot(result.getMethod().getMethodName(),driver);
+					extentTest.get().addScreenCaptureFromPath(path);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 				
 				
 			}
